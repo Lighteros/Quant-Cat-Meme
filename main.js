@@ -87,6 +87,23 @@
   );
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
+  document.querySelectorAll("[data-tilt]").forEach((card) => {
+    card.addEventListener("pointermove", (e) => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      card.style.setProperty("--rx", `${(0.5 - y) * 5}deg`);
+      card.style.setProperty("--ry", `${(x - 0.5) * 5}deg`);
+      card.style.setProperty("--px", `${x * 100}%`);
+      card.style.setProperty("--py", `${y * 100}%`);
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--rx", "0deg");
+      card.style.setProperty("--ry", "0deg");
+    });
+  });
+
   const canvas = document.getElementById("tape");
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
