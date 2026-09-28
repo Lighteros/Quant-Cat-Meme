@@ -1,7 +1,7 @@
 (() => {
   const DESK = {
-    ca: "",
-    pair: "",
+    ca: "0xb573953fdf84906c041e8a2b8343989d97e738b7",
+    pair: "0x1E46DBB1E9d0A908848D8757e565A1B0618aE590",
   };
 
   const dexBase = "https://dexscreener.com/ethereum";
